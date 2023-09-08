@@ -136,10 +136,10 @@ R's built-in functions like `memDecompress` and `memCompress` are good for simpl
 
 2. **GZIP File Format Specification**: R's `memCompress` doesn't adhere strictly to the GZIP File Format Specification, particularly regarding the usage of window bits.
    ```R  
-   memCompress("Hello World", type="gzip")  # Incorrect 15 wbits  
+   memCompress("Hello World", type="gzip")  # Only 15 wbits -> without header checksum
    # [1] 78 9c f3 48 cd c9 c9 57 08 cf 2f ca 49 01 00 18 0b 04 1d  
    ```
-   [Official GZIP File Format Specification](https://www.ietf.org/rfc/rfc1952.txt)
+   [Official GZIP File Format Specification](https://www.zlib.net/manual.html)
    *Incorrect Behavior with Different `wbits`*: The behavior of `memCompress` is inconsistent when different `wbits` are used for compression and decompression.
    ```R  
    compressor <- zlib$compressobj(zlib$Z_DEFAULT_COMPRESSION, zlib$DEFLATED, zlib$MAX_WBITS + 16)  
@@ -162,7 +162,7 @@ R's built-in functions like `memDecompress` and `memCompress` are good for simpl
    # [1] "Hello WorldHello World"  
    ```
 
-3. **No Streaming Support**: There's no native way to handle Gzip streams from REST APIs or other data streams without creating temporary files or implementing cumbersome workarounds (e.g. with pipes and tmp files).
+3. **No Streaming Support**: There's no nati ve way to handle Gzip streams from REST APIs or other data streams without creating temporary files or implementing cumbersome workarounds (e.g. with pipes and tmp files).
 
 #### What My Package Offers
 
@@ -183,6 +183,46 @@ R's built-in functions like `memDecompress` and `memCompress` are good for simpl
    ```
 
 3. **Flexibility**: Ability to manage Gzip streams from REST APIs without the need for temporary files or other workarounds.
+
+   ```R
+   # Byte-Range Request and decompression in chunks
+   
+   # Initialize the decompressor
+   decompressor <- zlib$decompressobj(zlib$MAX_WBITS + 16)
+   
+   # Define the URL and initial byte ranges
+   url <- "https://example.com/api/data.gz"
+   range_start <- 0
+   range_increment <- 5000  # Adjust based on desired chunk size
+   
+   # Placeholder for the decompressed content
+   decompressed_content <- character(0)
+   
+   # Loop to make multiple requests and decompress chunk by chunk
+   for (i in 1:5) {  # Adjust the loop count based on the number of chunks you want to retrieve
+   range_end <- range_start + range_increment
+   
+   # Make a byte-range request
+   response <- httr::GET(url, httr::add_headers(`Range` = paste0("bytes=", range_start, "-", range_end)))
+   
+   # Check if the request was successful
+   if (httr::http_type(response) != "application/octet-stream" || httr::http_status(response)$category != "Success") {
+   stop("Failed to retrieve data.")
+   }
+   
+   # Decompress the received chunk
+   compressed_data <- httr::content(response, "raw")
+   decompressed_chunk <- decompressor$decompress(compressed_data)
+   decompressed_content <- c(decompressed_content, rawToChar(decompressed_chunk))
+   
+   # Update the byte range for the next request
+   range_start <- range_end + 1
+   }
+   
+   # Flush the decompressor after all chunks have been processed
+   final_data <- decompressor$flush()
+   decompressed_content <- c(decompressed_content, rawToChar(final_data))
+   ```
 
 In summary, while R’s built-in methods could someday catch up in functionality, my zlib package for now fills an important gap by providing a more robust and flexible way to handle compression and decompression tasks.
 
@@ -241,13 +281,15 @@ If any of these feature enhancements interest you, or if you have other suggesti
 ### Installing Dependencies on Ubuntu
 
 ```bash  
-sudo apt-get updatesudo apt-get install cmake ninja-build r-base libblas-dev liblapack-dev build-essential 
+sudo apt-get update
+sudo apt-get install cmake ninja-build r-base libblas-dev liblapack-dev build-essential 
 ```  
   
 ### Installing Dependencies on Red Hat  
   
 ```bash  
-sudo yum updatesudo yum install cmake ninja-build R libblas-devel liblapack-devel gcc-c++
+sudo yum update
+sudo yum install cmake ninja-build R libblas-devel liblapack-devel gcc-c++
 ```  
   
 ### Building  
