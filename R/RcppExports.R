@@ -124,7 +124,9 @@ decompress_chunk <- function(decompressorPtr, input_chunk) {
 #' Flush the internal buffer of the decompressor object.
 #'
 #' This function processes all pending input and returns the remaining uncompressed output.
-#' After calling this function, the decompress_chunk() method cannot be called again on the same object.
+#' The function uses the provided initial buffer size and dynamically expands it as necessary
+#' to ensure all remaining data is decompressed. After calling this function, the
+#' decompress_chunk() method cannot be called again on the same object.
 #' @param decompressorPtr A SEXP pointer to an existing decompressor object.
 #' @param length An optional parameter that sets the initial size of the output buffer. Default is 256.
 #' @return A raw vector containing the remaining uncompressed output.

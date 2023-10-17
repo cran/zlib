@@ -1,5 +1,5 @@
 Package: zlib
-Version: 1.0.1
+Version: 1.0.2
 Type: Package
 Title: Compression and Decompression
 Authors@R: person("Semjon", "Geist", role = c("aut", "cre"),
@@ -18,7 +18,7 @@ Language: en-US
 RoxygenNote: 7.2.3
 Config/testthat/edition: 3
 NeedsCompilation: yes
-Packaged: 2023-09-08 21:04:56 UTC; sgeist
+Packaged: 2023-10-17 22:17:22 UTC; sgeist
 Maintainer: Semjon Geist <mail@semjon-geist.de>
 Repository: CRAN
-Date/Publication: 2023-09-08 21:50:02 UTC
+Date/Publication: 2023-10-17 22:40:03 UTC

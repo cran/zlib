@@ -1,9 +1,9 @@
-080913c929ff5bf5facfd0f576d7d7b8 *DESCRIPTION
+13d329ebb2359bf19c42e19c607db1be *DESCRIPTION
 f29a2c63053e8222f987eacd931552de *LICENSE
 21bd5970387ed8366312f670a014c74f *NAMESPACE
-649b533e58138371b9975ebeaeb8fa87 *R/RcppExports.R
+7ef1d3ce3ef53da20dada3bf858d4b33 *R/RcppExports.R
 1ab474d8db19963d7550c9ba3fa3fc7a *R/zlib.R
-8e12943a84e497ec79d9f0461e76ca51 *README.md
+712600d619fa08085820a292ee8e6cf8 *README.md
 3df2d835c6b7bcec0ce8cee792284f90 *man/compress.Rd
 bf58cd9daeb741f3d3584e9d53f92833 *man/compress_chunk.Rd
 ac70acd14d8a0196d4c9784abc7c5b2f *man/compressobj.Rd
@@ -13,7 +13,7 @@ bfcdfb451e1f167d5e86c923641daa92 *man/create_decompressor.Rd
 4205620d2bfd1a50459521c4b245505e *man/decompress_chunk.Rd
 2ed11b46cca6cd660ea704e624d0ee4f *man/decompressobj.Rd
 8893f650816f662ca773e599da6c9a11 *man/flush_compressor_buffer.Rd
-dcb5a1640badebb30a87ee48e45f765d *man/flush_decompressor_buffer.Rd
+dc27b6eaf2a44d0a53e325003746ab13 *man/flush_decompressor_buffer.Rd
 69f070de910997a4f397cb36777d8bfa *man/publicEval.Rd
 9aba5d3fc9049a01c09b5412399064c2 *man/validate_gzip_file.Rd
 e68db20dbd4d4699928ba5386a1ba706 *man/zlib.Rd
@@ -22,6 +22,6 @@ c385837e62aca0bcb42acf6b254d3531 *man/zlib_constants.Rd
 52a4173b013495567a97a31ebbffaeed *src/RcppExports.cpp
 63d98aec4c45cbf83faaaa8fc0e15115 *src/compressor.cpp
 7cc6fba5082cbebd661fe834626afe23 *src/constants.cpp
-5ed0fe065a3e96a1b04a545fb1e9edfe *src/decompressor.cpp
+d45d6d2cc01330212f8e67748e6ac20f *src/decompressor.cpp
 8364b006030f767531584162fc90f8df *src/validate.cpp
 bb9f6bd4b42fac1c3b2533b3385b2d1f *tests/test_zlib.R
