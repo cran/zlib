@@ -1,4 +1,4 @@
-13d329ebb2359bf19c42e19c607db1be *DESCRIPTION
+5c84fdef1479e298cc09e7251bab242a *DESCRIPTION
 f29a2c63053e8222f987eacd931552de *LICENSE
 21bd5970387ed8366312f670a014c74f *NAMESPACE
 7ef1d3ce3ef53da20dada3bf858d4b33 *R/RcppExports.R
@@ -20,8 +20,8 @@ e68db20dbd4d4699928ba5386a1ba706 *man/zlib.Rd
 c385837e62aca0bcb42acf6b254d3531 *man/zlib_constants.Rd
 401cb6abf1fdfea8723efe9454824c7a *src/Makevars
 52a4173b013495567a97a31ebbffaeed *src/RcppExports.cpp
-63d98aec4c45cbf83faaaa8fc0e15115 *src/compressor.cpp
+70fe14f3045d761ba215514f9c2dae85 *src/compressor.cpp
 7cc6fba5082cbebd661fe834626afe23 *src/constants.cpp
-d45d6d2cc01330212f8e67748e6ac20f *src/decompressor.cpp
+726bcb1b92024ffe0d0aad69a10fa45c *src/decompressor.cpp
 8364b006030f767531584162fc90f8df *src/validate.cpp
 bb9f6bd4b42fac1c3b2533b3385b2d1f *tests/test_zlib.R
